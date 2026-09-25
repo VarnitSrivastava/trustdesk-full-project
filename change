@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TrustDesk — AI Support Operations</title>
+    <style>
+        :root { --bg:#f4f7fb; --surface:#fff; --line:#e5eaf1; --text:#172033; --muted:#697386; --brand:#315efb; --brand2:#1e46cf; --success:#138a5b; --warning:#b26a00; --danger:#c73535; --shadow:0 10px 30px rgba(25,40,70,.07); }
+        *{box-sizing:border-box} body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--text)} button,input,select{font:inherit}
+        .app{display:flex;min-height:100vh}.sidebar{width:245px;background:#111827;color:#fff;padding:22px 14px;position:fixed;inset:0 auto 0 0}.brand{display:flex;gap:11px;align-items:center;padding:5px 10px 25px}.logo{width:38px;height:38px;border-radius:11px;background:#fff;color:#111827;display:grid;place-items:center;font-weight:900}.brand h1{font-size:18px;margin:0}.brand small{color:#9ca3af}.nav button{width:100%;border:0;background:transparent;color:#cbd5e1;text-align:left;padding:12px 13px;border-radius:9px;cursor:pointer;margin:2px 0}.nav button:hover,.nav button.active{background:#1f2937;color:#fff}.nav .icon{display:inline-block;width:24px}.main{margin-left:245px;width:calc(100% - 245px);padding:28px 32px}.topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:25px}.topbar h2{margin:0;font-size:25px}.topbar p{margin:5px 0 0;color:var(--muted)}.status{display:flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--line);padding:9px 13px;border-radius:999px;font-size:13px}.dot{width:8px;height:8px;border-radius:50%;background:#22a06b}.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-bottom:22px}.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;box-shadow:var(--shadow)}.metric{font-size:27px;font-weight:800;margin:7px 0}.label{color:var(--muted);font-size:13px}.layout{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(330px,.65fr);gap:18px}.panel{background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);overflow:hidden}.panel-head{padding:17px 18px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}.panel-head h3{margin:0;font-size:16px}.panel-body{padding:18px}.ticket{border:1px solid var(--line);border-radius:12px;padding:15px;margin-bottom:11px;cursor:pointer;transition:.15s}.ticket:hover,.ticket.selected{border-color:#9db1ff;box-shadow:0 4px 15px rgba(49,94,251,.08)}.ticket-row{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.ticket-title{font-weight:700}.ticket-msg{font-size:13px;color:var(--muted);margin-top:7px;line-height:1.45}.badges{display:flex;gap:6px;flex-wrap:wrap}.badge{font-size:11px;font-weight:700;padding:4px 8px;border-radius:999px;background:#eef2f7;color:#526071}.badge.high,.badge.urgent{background:#fff0ed;color:var(--danger)}.badge.medium{background:#fff7df;color:var(--warning)}.badge.low{background:#eaf8f2;color:var(--success)}.badge.blocked{background:#fff0ed;color:var(--danger)}.badge.done{background:#eaf8f2;color:var(--success)}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.btn{border:1px solid var(--line);background:#fff;color:var(--text);padding:9px 12px;border-radius:8px;cursor:pointer;font-weight:650;font-size:13px}.btn:hover{background:#f6f8fb}.btn.primary{background:var(--brand);border-color:var(--brand);color:#fff}.btn.primary:hover{background:var(--brand2)}.btn.success{background:#138a5b;border-color:#138a5b;color:#fff}.btn.danger{background:#fff;color:var(--danger);border-color:#efb5b5}.btn:disabled{opacity:.5;cursor:not-allowed}.empty{padding:35px;text-align:center;color:var(--muted)}.detail-section{margin-bottom:18px}.detail-section:last-child{margin-bottom:0}.detail-section h4{margin:0 0 9px;font-size:13px;color:#4b5563;text-transform:uppercase;letter-spacing:.05em}.message{background:#f7f9fc;border:1px solid var(--line);padding:13px;border-radius:10px;line-height:1.55;font-size:14px}.kv{display:grid;grid-template-columns:1fr 1fr;gap:9px}.kv div{background:#f8fafc;padding:10px;border-radius:9px}.kv b{display:block;font-size:11px;color:var(--muted);margin-bottom:3px}.draft{white-space:pre-wrap;line-height:1.55;background:#f7f9fc;border:1px solid var(--line);border-radius:10px;padding:13px;font-size:14px}.trace{border-left:3px solid #9db1ff;padding:8px 0 8px 11px;margin-bottom:9px}.trace strong{font-size:13px}.trace small{color:var(--muted);display:block;margin-top:3px}.kb{display:flex;align-items:center;justify-content:space-between;border:1px solid var(--line);padding:10px;border-radius:9px;margin-bottom:7px}.table-wrap{overflow:auto}.table{width:100%;border-collapse:collapse}.table th,.table td{text-align:left;padding:12px;border-bottom:1px solid var(--line);font-size:13px}.table th{color:var(--muted);font-size:11px;text-transform:uppercase}.search{border:1px solid var(--line);border-radius:8px;padding:9px 11px;min-width:190px;outline:none}.search:focus{border-color:#9db1ff}.toast{position:fixed;right:25px;bottom:25px;background:#111827;color:#fff;padding:12px 15px;border-radius:10px;box-shadow:var(--shadow);display:none;max-width:360px;z-index:10}.toast.show{display:block}.spinner{width:15px;height:15px;border:2px solid #cbd5e1;border-top-color:#315efb;border-radius:50%;display:inline-block;animation:spin .8s linear infinite;vertical-align:-3px}@keyframes spin{to{transform:rotate(360deg)}}.page{display:none}.page.active{display:block}.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px}.note{font-size:12px;color:var(--muted);line-height:1.5}.error{color:var(--danger);background:#fff3f2;border:1px solid #f1c2be;padding:10px;border-radius:8px;margin-bottom:12px}.successbox{color:var(--success);background:#effaf5;border:1px solid #bde6d1;padding:10px;border-radius:8px;margin-bottom:12px}
+        @media(max-width:1050px){.cards{grid-template-columns:repeat(2,1fr)}.layout{grid-template-columns:1fr}.sidebar{width:205px}.main{margin-left:205px;width:calc(100% - 205px)}}
+        @media(max-width:720px){.sidebar{position:static;width:100%;min-height:auto}.app{display:block}.main{margin-left:0;width:100%;padding:18px}.cards{grid-template-columns:1fr 1fr}.topbar{align-items:flex-start;gap:12px}.status{display:none}.kv{grid-template-columns:1fr}.nav{display:flex;overflow:auto}.nav button{white-space:nowrap;width:auto}.brand{padding-bottom:12px}}
+    </style>
+</head>
+<body>
+<div class="app">
+    <aside class="sidebar">
+        <div class="brand"><div class="logo">T</div><div><h1>TrustDesk</h1><small>AI Support Operations</small></div></div>
+        <nav class="nav">
+            <button class="active" data-page="dashboard"><span class="icon">⌂</span>Dashboard</button>
+            <button data-page="tickets"><span class="icon">▤</span>Tickets</button>
+            <button data-page="actions"><span class="icon">✓</span>Actions</button>
+            <button data-page="traces"><span class="icon">◌</span>Audit Trace</button>
+            <button data-page="evaluations"><span class="icon">◎</span>Evaluations</button>
+        </nav>
+    </aside>
+
+    <main class="main">
+        <div class="topbar"><div><h2 id="pageTitle">Support Dashboard</h2><p id="pageSubtitle">Monitor tickets, AI decisions, approvals and audit activity.</p></div><div class="status"><span class="dot"></span> API connected</div></div>
+
+        <section id="page-dashboard" class="page active">
+            <div class="cards">
+                <div class="card"><div class="label">Total Tickets</div><div class="metric" id="mTickets">—</div><div class="label">Customer conversations</div></div>
+                <div class="card"><div class="label">Open Tickets</div><div class="metric" id="mOpen">—</div><div class="label">Need attention</div></div>
+                <div class="card"><div class="label">Escalated</div><div class="metric" id="mEscalated">—</div><div class="label">Human review required</div></div>
+                <div class="card"><div class="label">Pending Actions</div><div class="metric" id="mPending">—</div><div class="label">Awaiting approval</div></div>
+            </div>
+            <div class="layout">
+                <div class="panel"><div class="panel-head"><h3>Recent Tickets</h3><button class="btn" onclick="loadAll()">Refresh</button></div><div class="panel-body" id="dashboardTickets"></div></div>
+                <div class="panel"><div class="panel-head"><h3>Latest Audit Activity</h3></div><div class="panel-body" id="dashboardTraces"></div></div>
+            </div>
+        </section>
+
+        <section id="page-tickets" class="page">
+            <div class="layout">
+                <div class="panel"><div class="panel-head"><h3>Customer Tickets</h3><label
+                        for="ticketSearch"></label><input id="ticketSearch" class="search" placeholder="Search tickets..." oninput="renderTickets()"></div><div class="panel-body" id="ticketList"></div></div>
+                <div class="panel"><div class="panel-head"><h3>Ticket Workspace</h3></div><div class="panel-body" id="ticketDetail"><div class="empty">Select a ticket to inspect and operate it.</div></div></div>
+            </div>
+        </section>
+
+        <section id="page-actions" class="page"><div class="panel"><div class="panel-head"><h3>Approval Queue</h3><button class="btn" onclick="renderActions()">Refresh</button></div><div class="panel-body" id="actionList"></div></div></section>
+
+        <section id="page-traces" class="page"><div class="panel"><div class="panel-head"><h3>Audit Trace</h3><button class="btn" onclick="renderTraces()">Refresh</button></div><div class="panel-body" id="traceList"></div></div></section>
+
+        <section id="page-evaluations" class="page"><div class="layout"><div class="panel"><div class="panel-head"><h3>Evaluation</h3><button class="btn primary" id="runEval" onclick="runEvaluation()">Run Evaluation</button></div><div class="panel-body" id="evalResult"><div class="empty">Run the evaluator to measure triage and guardrail behavior.</div></div></div><div class="panel"><div class="panel-head"><h3>Evaluation Coverage</h3></div><div class="panel-body"><div class="note">The current backend evaluator reports total cases, triage matches/accuracy and unsafe-request blocking. It is intentionally lightweight and can later be expanded for citation coverage, escalation accuracy and tool safety.</div></div></div></div></section>
+    </main>
+</div>
+<div id="toast" class="toast"></div>
+
+<script>
+    const API = '/api';
+    const state = { tickets: [], traces: [], actions: [], selectedId: null, drafts: {} };
+
+    function esc(v){return String(v ?? '').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));}
+    function fmtDate(v){ if(!v) return '—'; const d=new Date(v); return Number.isNaN(d.getTime())?esc(v):d.toLocaleString(); }
+    function badge(v){ if(v===undefined||v===null||v==='') return ''; const cls=String(v).toLowerCase().replaceAll(' ','-'); return `<span class="badge ${cls}">${esc(v)}</span>`; }
+    function toast(msg){const el=document.getElementById('toast');el.textContent=msg;el.classList.add('show');clearTimeout(window.__toast);window.__toast=setTimeout(()=>el.classList.remove('show'),3200);}
+
+    async function api(path, opts={}){
+      const res=await fetch(API+path,{...opts,headers:{'Content-Type':'application/json','X-Demo-Token':'demo-token',...(opts.headers||{})}});
+      const text=await res.text(); let data={}; try{data=text?JSON.parse(text):{}}catch{data={raw:text}};
+      if(!res.ok) throw new Error(data.error || data.message || `Request failed (${res.status})`);
+      return data;
+    }
+
+    function showPage(name){
+      document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));
+      document.querySelectorAll('.nav button').forEach(x=>x.classList.toggle('active',x.dataset.page===name));
+      document.getElementById('page-'+name).classList.add('active');
+      const meta={dashboard:['Support Dashboard','Monitor tickets, AI decisions, approvals and audit activity.'],tickets:['Ticket Workspace','Triage, ground responses and request safe actions.'],actions:['Approval Queue','Human approval is required before sensitive actions execute.'],traces:['Audit Trace','Review decisions, guardrail results and workflow history.'],evaluations:['Evaluations','Measure the behavior of the current support agent.']};
+      document.getElementById('pageTitle').textContent=meta[name][0];document.getElementById('pageSubtitle').textContent=meta[name][1];
+      if(name==='tickets') renderTickets(); if(name==='actions') renderActions(); if(name==='traces') renderTraces();
+    }
+
+    document.querySelectorAll('.nav button').forEach(b=>b.addEventListener('click',()=>showPage(b.dataset.page)));
+
+    async function loadAll(){
+      try{
+        const [tickets,traces]=await Promise.all([api('/tickets'),api('/traces')]);
+        state.tickets=tickets; state.traces=traces;
+        // There is no GET /actions endpoint in the current backend, so pending actions are derived from the UI session.
+        updateMetrics(); renderDashboard(); renderTickets(); renderTraces();
+      }catch(e){toast(e.message);}
+    }
+    function updateMetrics(){
+      document.getElementById('mTickets').textContent=state.tickets.length;
+      document.getElementById('mOpen').textContent=state.tickets.filter(t=>String(t.status).toUpperCase()==='OPEN').length;
+      document.getElementById('mEscalated').textContent=state.tickets.filter(t=>t.escalated||String(t.status).toUpperCase()==='ESCALATED').length;
+      document.getElementById('mPending').textContent=state.actions.filter(a=>a.status==='PENDING_APPROVAL').length;
+    }
+    function ticketCard(t){return `<div class="ticket ${state.selectedId===t.id?'selected':''}" onclick="selectTicket(${t.id})"><div class="ticket-row"><div><div class="ticket-title">#${t.id} · ${esc(t.category||'Untriaged')}</div><div class="ticket-msg">${esc(t.message)}</div></div><div class="badges">${badge(t.priority||'Not triaged')}${t.escalated?badge('Escalated'):''}</div></div><div class="note" style="margin-top:8px">Status: ${esc(t.status||'OPEN')} · Created ${fmtDate(t.createdAt)}</div></div>`;}
+    function renderDashboard(){
+      document.getElementById('dashboardTickets').innerHTML=state.tickets.length?state.tickets.slice(0,6).map(ticketCard).join(''):'<div class="empty">No tickets found.</div>';
+      document.getElementById('dashboardTraces').innerHTML=state.traces.length?state.traces.slice(-6).reverse().map(traceHtml).join(''):'<div class="empty">No trace activity yet.</div>';
+    }
+    function renderTickets(){
+      const q=(document.getElementById('ticketSearch')?.value||'').toLowerCase();
+      const list=state.tickets.filter(t=>`${t.id} ${t.message} ${t.category||''} ${t.status||''}`.toLowerCase().includes(q));
+      document.getElementById('ticketList').innerHTML=list.length?list.map(ticketCard).join(''):'<div class="empty">No matching tickets.</div>';
+      if(state.selectedId && !state.tickets.find(t=>t.id===state.selectedId)) state.selectedId=null;
+    }
+    async function selectTicket(id){
+      state.selectedId=id; renderTickets();
+      const t=state.tickets.find(x=>x.id===id); renderTicketDetail(t);
+    }
+    function renderTicketDetail(t){
+      if(!t){document.getElementById('ticketDetail').innerHTML='<div class="empty">Select a ticket to inspect and operate it.</div>';return;}
+      document.getElementById('ticketDetail').innerHTML=`
+        <div class="detail-section"><h4>Customer Request</h4><div class="message">${esc(t.message)}</div></div>
+        <div class="detail-section"><h4>AI Decision</h4><div class="kv">
+          <div><b>Category</b>${esc(t.category||'Not triaged')}</div><div><b>Priority</b>${badge(t.priority||'Not triaged')}</div>
+          <div><b>Escalation</b>${t.escalated?badge('Escalated'):badge('No escalation')}</div><div><b>Status</b>${badge(t.status||'OPEN')}</div>
+        </div></div>
+        <div class="detail-section"><h4>Workflow</h4><div class="actions">
+          <button class="btn primary" onclick="triage(${t.id})">Run Triage</button>
+          <button class="btn" onclick="draft(${t.id})">Generate Draft</button>
+          <button class="btn" onclick="requestAction(${t.id},'start_refund_review')">Refund Review</button>
+          <button class="btn" onclick="requestAction(${t.id},'create_replacement_order')">Replacement</button>
+        </div><div class="note" style="margin-top:8px">Sensitive actions create a pending approval record before execution.</div></div>
+        <div id="ticketOutput"></div>`;
+      if(state.drafts[t.id]) renderDraft(state.drafts[t.id]);
+    }
+    async function triage(id){
+      try{toast('Running AI triage…');const t=await api(`/tickets/${id}/triage`,{method:'POST'});const i=state.tickets.findIndex(x=>x.id===id);if(i>=0)state.tickets[i]=t;updateMetrics();renderTickets();renderTicketDetail(t);toast('Triage completed.');}
+      catch(e){toast(e.message);}
+    }
+    async function draft(id){
+      try{toast('Retrieving trusted knowledge and generating draft…');const d=await api(`/tickets/${id}/draft`,{method:'POST'});state.drafts[id]=d;renderDraft(d);toast('Draft generated.');}
+      catch(e){document.getElementById('ticketOutput').innerHTML=`<div class="error">${esc(e.message)}</div>`;toast(e.message);}
+    }
+    function renderDraft(d){
+      const out=document.getElementById('ticketOutput'); if(!out)return;
+      out.innerHTML=`<div class="detail-section"><h4>Grounded Draft</h4><div class="draft">${esc(d.body)}</div><div class="note" style="margin-top:8px"><b>Grounded:</b> ${d.grounded?'Yes':'No'} · <b>Citations:</b> ${esc(d.citations||'None')}</div></div>`;
+    }
+    async function requestAction(ticketId,type){
+      const key=`${type}-ticket-${ticketId}-${Date.now()}`;
+      try{const a=await api(`/tickets/${ticketId}/action`,{method:'POST',body:JSON.stringify({type,idempotencyKey:key})});state.actions=[a,...state.actions.filter(x=>x.id!==a.id)];updateMetrics();showPage('actions');toast(`Action created: ${a.status}`);}
+      catch(e){toast(e.message);}
+    }
+    async function approve(id,approved){
+      try{const a=await api(`/actions/${id}/approve`,{method:'POST',body:JSON.stringify({approved,reviewer:'human-reviewer'})});state.actions=[a,...state.actions.filter(x=>x.id!==a.id)];updateMetrics();renderActions();toast(a.status);}
+      catch(e){toast(e.message);}
+    }
+    function renderActions(){
+      const el=document.getElementById('actionList');
+      if(!state.actions.length){el.innerHTML='<div class="empty">No actions have been requested in this browser session.<br><span class="note">The current backend has no GET /api/actions endpoint, so historical actions cannot be loaded after a page refresh.</span></div>';return;}
+      el.innerHTML=state.actions.map(a=>`<div class="ticket"><div class="ticket-row"><div><div class="ticket-title">Action #${a.id} · ${esc(a.actionType)}</div><div class="note">Ticket #${a.ticketId} · ${fmtDate(a.createdAt)}</div><div class="mono" style="margin-top:8px">${esc(a.idempotencyKey)}</div></div><div>${badge(a.status)}</div></div>${a.status==='PENDING_APPROVAL'?`<div class="actions"><button class="btn success" onclick="approve(${a.id},true)">Approve</button><button class="btn danger" onclick="approve(${a.id},false)">Reject</button></div>`:''}</div>`).join('');
+    }
+    function traceHtml(x){return `<div class="trace"><strong>#${esc(x.ticketId)} · ${esc(x.runType)}</strong>${badge(x.finalStatus||x.guardrailResult||'—')}<small>${esc(x.retrievedDocIds||'No documents')} · ${fmtDate(x.createdAt)}</small></div>`;}
+    function renderTraces(){document.getElementById('traceList').innerHTML=state.traces.length?state.traces.slice().reverse().map(traceHtml).join(''):'<div class="empty">No audit traces yet. Run triage or generate a draft.</div>';}
+    async function runEvaluation(){
+      const btn=document.getElementById('runEval');btn.disabled=true;btn.innerHTML='<span class="spinner"></span> Running';
+      try{const r=await api('/evals/run',{method:'POST'});document.getElementById('evalResult').innerHTML=`<div class="cards" style="grid-template-columns:repeat(3,1fr);margin:0 0 15px"><div class="card"><div class="label">Total Cases</div><div class="metric">${esc(r.total)}</div></div><div class="card"><div class="label">Triage Accuracy</div><div class="metric">${r.triageAccuracy==null?'—':(Number(r.triageAccuracy)*100).toFixed(0)+'%'}</div></div><div class="card"><div class="label">Unsafe Blocked</div><div class="metric">${esc(r.unsafeRequestsBlocked)}</div></div></div><div class="successbox">Evaluation completed successfully.</div><div class="note">${esc(r.note||'')}</div>`;}
+      catch(e){document.getElementById('evalResult').innerHTML=`<div class="error">${esc(e.message)}</div>`;}
+      finally{btn.disabled=false;btn.textContent='Run Evaluation';}
+    }
+
+    async function init(){await loadAll();}
+    init();
+</script>
+</body>
+</html>
