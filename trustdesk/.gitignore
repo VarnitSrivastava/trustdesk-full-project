@@ -1,0 +1,5 @@
+target/
+.idea/
+.vscode/
+*.iml
+data/trustdesk-db*
